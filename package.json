@@ -1,0 +1,48 @@
+{
+  "name": "mega645-analyzer",
+  "version": "3.2.1",
+  "description": "Mega 6/45 and Lotto 5/35 historical statistics desktop app with GitHub auto-updates",
+  "main": "app/main.js",
+  "author": "leekny",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder --win nsis",
+    "release": "electron-builder --win nsis --publish always"
+  },
+  "devDependencies": {
+    "electron": "^35.0.0",
+    "electron-builder": "^26.0.12",
+    "electron-updater": "^6.6.2"
+  },
+  "build": {
+    "appId": "vn.mega645.analyzer",
+    "productName": "Mega 6/45 Analyzer",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "app/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "Mega645-Analyzer-Setup-${version}.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    },
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "leekny",
+        "repo": "mega645-analyzer",
+        "releaseType": "release"
+      }
+    ]
+  }
+}
